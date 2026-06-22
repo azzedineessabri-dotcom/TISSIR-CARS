@@ -11,10 +11,6 @@
   ],
   "routes": [
     {
-      "src": "/static/uploads/(.*)",
-      "dest": "/wsgi.py"
-    },
-    {
       "src": "/static/(.*)",
       "dest": "/static/$1"
     },

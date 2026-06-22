@@ -1,91 +1,82 @@
 {% extends "base.html" %}
-{% block title %}Contact | Sannad Tech{% endblock %}
+{% block title %}Contact - Sannad Tech{% endblock %}
 {% block content %}
 
 <section class="section">
     <div class="container">
         <h2 class="section-title">Contactez-nous</h2>
-        <p class="section-subtitle">Une question ? Une réservation spéciale ? Écrivez-nous !</p>
+        <p class="section-subtitle">Vous avez un projet en tête ? Parlons-en !</p>
 
-        <div class="contact-layout">
+        <div class="contact-grid">
             <div class="contact-info">
-                <h3>Nos coordonnées</h3>
-                {% set addr = config.get('COMPANY_ADDRESS', '') %}
-                {% set phone = config.get('COMPANY_PHONE', '') %}
-                {% set phone2 = config.get('COMPANY_PHONE2', '') %}
-                {% set email = config.get('COMPANY_EMAIL', '') %}
-                {% set h_week = config.get('COMPANY_HOURS_WEEK', '') %}
-                {% set h_weekend = config.get('COMPANY_HOURS_WEEKEND', '') %}
-                {% if addr %}
+                <h3><i class="fas fa-paper-plane"></i> Nos coordonnées</h3>
                 <div class="contact-info-item">
                     <i class="fas fa-map-marker-alt"></i>
                     <div>
                         <strong>Adresse</strong>
-                        <p>{{ addr }}</p>
+                        <p>Béni Mellal, Maroc</p>
                     </div>
                 </div>
-                {% endif %}
-                {% if phone or phone2 %}
                 <div class="contact-info-item">
-                    <i class="fas fa-phone-alt"></i>
+                    <i class="fas fa-phone"></i>
                     <div>
                         <strong>Téléphone</strong>
-                        {% if phone %}<p>{{ phone }}</p>{% endif %}
-                        {% if phone2 %}<p>{{ phone2 }} (WhatsApp)</p>{% endif %}
+                        <p>+212 5XX-XXXXXX</p>
                     </div>
                 </div>
-                {% endif %}
-                {% if email %}
                 <div class="contact-info-item">
                     <i class="fas fa-envelope"></i>
                     <div>
                         <strong>Email</strong>
-                        <p>{{ email }}</p>
+                        <p>contact@sannadtech.ma</p>
                     </div>
                 </div>
-                {% endif %}
-                {% if h_week or h_weekend %}
                 <div class="contact-info-item">
                     <i class="fas fa-clock"></i>
                     <div>
                         <strong>Horaires</strong>
-                        {% if h_week %}<p>{{ h_week }}</p>{% endif %}
-                        {% if h_weekend %}<p>{{ h_weekend }}</p>{% endif %}
+                        <p>Lun - Ven : 09:00 - 18:00</p>
                     </div>
                 </div>
-                {% endif %}
             </div>
 
-            <div class="contact-form">
-                <h3>Envoyez-nous un message</h3>
-                <form method="POST" action="{{ url_for('contact') }}">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Nom complet *</label>
-                            <input type="text" name="nom" required placeholder="Votre nom">
-                        </div>
-                        <div class="form-group">
-                            <label>Email *</label>
-                            <input type="email" name="email" required placeholder="votre@email.com">
-                        </div>
+            <form method="POST" class="contact-form">
+                <h3 style="margin-bottom:20px;color:var(--primary)"><i class="fas fa-comment"></i> Envoyez-nous un message</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Nom complet *</label>
+                        <input type="text" name="nom" required placeholder="Votre nom">
                     </div>
+                    <div class="form-group">
+                        <label>Email *</label>
+                        <input type="email" name="email" required placeholder="votre@email.com">
+                    </div>
+                </div>
+                <div class="form-row">
                     <div class="form-group">
                         <label>Téléphone</label>
                         <input type="tel" name="telephone" placeholder="+212 6XX-XXXXXX">
                     </div>
                     <div class="form-group">
                         <label>Sujet *</label>
-                        <input type="text" name="sujet" required placeholder="Sujet de votre message">
+                        <select name="sujet" required>
+                            <option value="">Choisissez...</option>
+                            <option>Développement Web</option>
+                            <option>Application Mobile</option>
+                            <option>Design UI/UX</option>
+                            <option>Cloud & DevOps</option>
+                            <option>Autre</option>
+                        </select>
                     </div>
-                    <div class="form-group">
-                        <label>Message *</label>
-                        <textarea name="message" required placeholder="Votre message..."></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-block" style="padding:15px">
-                        <i class="fas fa-paper-plane"></i> Envoyer le message
-                    </button>
-                </form>
-            </div>
+                </div>
+                <div class="form-group">
+                    <label>Message *</label>
+                    <textarea name="message" required placeholder="Décrivez votre projet..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-paper-plane"></i> Envoyer le message
+                </button>
+            </form>
         </div>
     </div>
 </section>

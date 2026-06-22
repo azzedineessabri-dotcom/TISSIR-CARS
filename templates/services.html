@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}Nos Services - Sannad Tech{% endblock %}
+{% block content %}
+
+<section class="section">
+    <div class="container">
+        <h2 class="section-title">Nos Services</h2>
+        <p class="section-subtitle">Des solutions digitales complètes pour propulser votre entreprise.</p>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <i class="fas fa-globe"></i>
+                <h3>Développement Web</h3>
+                <p>Sites vitrines, plateformes e-commerce, applications web sur mesure. Technologies modernes (React, Vue, Flask, Django).</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-mobile-alt"></i>
+                <h3>Applications Mobiles</h3>
+                <p>Applications iOS et Android natives ou cross-platform (Flutter, React Native). Expérience utilisateur optimale.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-paint-brush"></i>
+                <h3>Design UI/UX</h3>
+                <p>Interfaces modernes et intuitives. Design thinking, prototypage, tests utilisateurs pour une expérience exceptionnelle.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-cloud"></i>
+                <h3>Cloud & DevOps</h3>
+                <p>Déploiement continu, infrastructure cloud (AWS, GCP, Azure), conteneurisation Docker, optimisation des performances.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-database"></i>
+                <h3>Data & Analytics</h3>
+                <p>Solutions de business intelligence, tableaux de bord interactifs, analyse de données pour éclairer vos décisions.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-shield-alt"></i>
+                <h3>Sécurité Informatique</h3>
+                <p>Audit de sécurité, protection des données, conformité RGPD, sécurisation de vos applications et infrastructures.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section" style="background:var(--white);text-align:center">
+    <div class="container">
+        <h2 class="section-title">Prêt à démarrer votre projet ?</h2>
+        <p class="section-subtitle">Discutons de vos besoins et trouvons la solution idéale.</p>
+        <a href="{{ url_for('contact') }}" class="btn btn-primary" style="margin-top:20px">
+            <i class="fas fa-paper-plane"></i> Demander un devis
+        </a>
+    </div>
+</section>
+
+{% endblock %}
