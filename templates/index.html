@@ -1,65 +1,73 @@
 {% extends "base.html" %}
-{% block title %}Sannad Tech - Innovation Digitale{% endblock %}
+{% block title %}Sannad Tech - Producteur de productivité digitale{% endblock %}
 {% block content %}
 
 <section class="hero">
     <div class="container">
-        <h1>Transformez vos idées en <span>solutions digitales</span></h1>
-        <p>Nous accompagnons les entreprises dans leur transformation numérique avec des solutions web, mobiles et cloud sur mesure.</p>
-        <div class="hero-btns">
-            <a href="{{ url_for('services') }}" class="btn btn-primary"><i class="fas fa-rocket"></i> Nos services</a>
-            <a href="{{ url_for('contact') }}" class="btn btn-outline"><i class="fas fa-comment"></i> Contactez-nous</a>
+        <div class="hero-text">
+            <div class="badge">Producteur de productivité</div>
+            <h1>Votre productivité,<br>notre <span>engagement</span></h1>
+            <p>Nous accompagnons la transformation digitale de nos clients grâce à des solutions IT intégrées, fiables et innovantes.</p>
+            <div class="hero-btns">
+                <a href="{{ url_for('services') }}" class="btn btn-primary"><i class="fas fa-arrow-right"></i> Notre expertise</a>
+                <a href="{{ url_for('contact') }}" class="btn btn-outline"><i class="fas fa-comment"></i> Contactez-nous</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="placeholder">
+                <i class="fas fa-play-circle" style="font-size:3rem;opacity:0.5"></i>
+            </div>
         </div>
     </div>
 </section>
 
 <section class="section">
     <div class="container">
-        <h2 class="section-title">Pourquoi choisir Sannad Tech ?</h2>
-        <p class="section-subtitle">Nous combinons expertise technique et passion pour créer des solutions qui font la différence.</p>
+        <h2 class="section-title section-title-center">À propos de nous</h2>
+        <p class="section-subtitle section-subtitle-center">Une équipe d'experts dédiée à chaque domaine, pour des réponses précises à tous vos besoins.</p>
         <div class="features-grid">
             <div class="feature-card">
-                <i class="fas fa-lightbulb"></i>
-                <h3>Innovation</h3>
-                <p>Des solutions modernes utilisant les dernières technologies du marché.</p>
+                <div class="icon"><i class="fas fa-expand-arrows-alt"></i></div>
+                <h3>Une démarche 360°</h3>
+                <p>Une équipe d'experts dédiée à chaque domaine, pour des réponses précises à tous vos besoins.</p>
             </div>
             <div class="feature-card">
-                <i class="fas fa-shield-alt"></i>
-                <h3>Fiabilité</h3>
-                <p>Des applications robustes, sécurisées et testées rigoureusement.</p>
+                <div class="icon"><i class="fas fa-rocket"></i></div>
+                <h3>Pionnier du secteur IT</h3>
+                <p>Plus de 5 ans d'expertise et de croissance continue au service de nos clients.</p>
             </div>
             <div class="feature-card">
-                <i class="fas fa-handshake"></i>
-                <h3>Accompagnement</h3>
-                <p>Support continu et formation pour une adoption réussie.</p>
+                <div class="icon"><i class="fas fa-digital-tiling"></i></div>
+                <h3>Transformation digitale</h3>
+                <p>Expert en transformation digitale, nous alignons technologie, métiers et performance.</p>
             </div>
             <div class="feature-card">
-                <i class="fas fa-tachometer-alt"></i>
-                <h3>Performance</h3>
-                <p>Des applications optimisées pour des résultats rapides et efficaces.</p>
+                <div class="icon"><i class="fas fa-certificate"></i></div>
+                <h3>Entreprise certifiée</h3>
+                <p>Des certifications solides et des partenariats mondiaux pour garantir la qualité de nos services.</p>
             </div>
         </div>
     </div>
 </section>
 
-<section class="stats">
+<section class="section section-dark stats">
     <div class="container">
         <div class="stats-grid">
             <div class="stat-item">
-                <h2>50+</h2>
-                <p>Projets réalisés</p>
-            </div>
-            <div class="stat-item">
-                <h2>30+</h2>
-                <p>Clients satisfaits</p>
+                <h2>0</h2>
+                <p>Pays couverts</p>
             </div>
             <div class="stat-item">
                 <h2>5+</h2>
-                <p>Années d'expérience</p>
+                <p>Années d'existence</p>
             </div>
             <div class="stat-item">
-                <h2>24/7</h2>
-                <p>Support technique</p>
+                <h2>0</h2>
+                <p>Collaborateurs</p>
+            </div>
+            <div class="stat-item">
+                <h2>0</h2>
+                <p>Certifications IT</p>
             </div>
         </div>
     </div>
@@ -67,25 +75,183 @@
 
 <section class="section">
     <div class="container">
-        <h2 class="section-title">Ce que disent nos clients</h2>
-        <p class="section-subtitle">La satisfaction de nos clients est notre plus belle récompense.</p>
-        <div class="testimonials-grid">
-            <div class="testimonial-card">
-                <i class="fas fa-quote-left"></i>
-                <p>Un travail exceptionnel ! L'équipe a su comprendre nos besoins et livrer une solution parfaitement adaptée.</p>
-                <p class="client">— Ahmed B., CEO</p>
-            </div>
-            <div class="testimonial-card">
-                <i class="fas fa-quote-left"></i>
-                <p>Professionnalisme et réactivité. Notre application mobile a été livrée dans les délais avec une qualité irréprochable.</p>
-                <p class="client">— Fatima Z., Directrice Marketing</p>
-            </div>
-            <div class="testimonial-card">
-                <i class="fas fa-quote-left"></i>
-                <p>Grâce à Sannad Tech, notre transformation digitale est un succès. Je recommande vivement leurs services.</p>
-                <p class="client">— Hassan M., Fondateur</p>
+        <h2 class="section-title section-title-center">Partenaires technologiques</h2>
+        <p class="section-subtitle section-subtitle-center">Nos partenariats stratégiques nous permettent d'offrir à nos clients des solutions à forte valeur ajoutée.</p>
+        <div class="partners-grid">
+            <div class="partner-logo">Microsoft</div>
+            <div class="partner-logo">AWS</div>
+            <div class="partner-logo">Google Cloud</div>
+            <div class="partner-logo">Cisco</div>
+            <div class="partner-logo">Dell</div>
+            <div class="partner-logo">IBM</div>
+            <div class="partner-logo">Oracle</div>
+            <div class="partner-logo">VMware</div>
+        </div>
+    </div>
+</section>
+
+<section class="section section-alt">
+    <div class="container">
+        <h2 class="section-title section-title-center">Nos clients</h2>
+        <p class="section-subtitle section-subtitle-center">Ils nous font confiance pour leurs projets de transformation digitale.</p>
+
+        <div class="client-sector">
+            <h3>ENTITÉS GOUVERNEMENTALES</h3>
+            <div class="client-logos">
+                <span class="client-logo">Ministère de l'Intérieur</span>
+                <span class="client-logo">Ministère des Finances</span>
+                <span class="client-logo">ANRT</span>
+                <span class="client-logo">ADII</span>
+                <span class="client-logo">CNSS</span>
             </div>
         </div>
+        <div class="client-sector">
+            <h3>ÉTABLISSEMENTS FINANCIERS</h3>
+            <div class="client-logos">
+                <span class="client-logo">Attijariwafa Bank</span>
+                <span class="client-logo">BCP</span>
+                <span class="client-logo">BMCE</span>
+                <span class="client-logo">CIH Bank</span>
+                <span class="client-logo">Crédit Agricole</span>
+            </div>
+        </div>
+        <div class="client-sector">
+            <h3>ÉNERGIES & MINES</h3>
+            <div class="client-logos">
+                <span class="client-logo">OCP</span>
+                <span class="client-logo">ONEE</span>
+                <span class="client-logo">TotalEnergies</span>
+                <span class="client-logo">Vivo Energy</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <h2 class="section-title section-title-center">Nos valeurs</h2>
+        <p class="section-subtitle section-subtitle-center">Des valeurs qui guident notre engagement au quotidien.</p>
+        <div class="values-grid">
+            <div class="value-card">
+                <div class="icon"><i class="fas fa-heart"></i></div>
+                <h3>Implication</h3>
+                <p>Travailler avec conviction, donner du sens à ce que l'on fait, s'engager pleinement.</p>
+            </div>
+            <div class="value-card">
+                <div class="icon"><i class="fas fa-share-alt"></i></div>
+                <h3>Partage</h3>
+                <p>Échanger connaissances et expériences pour grandir et faire grandir avec soi.</p>
+            </div>
+            <div class="value-card">
+                <div class="icon"><i class="fas fa-user-check"></i></div>
+                <h3>Centre client</h3>
+                <p>Placer les problématiques de nos clients au cœur de nos préoccupations.</p>
+            </div>
+            <div class="value-card">
+                <div class="icon"><i class="fas fa-lightbulb"></i></div>
+                <h3>Innovation</h3>
+                <p>Être porteur de valeur ajoutée, moteur de solutions efficientes et productives.</p>
+            </div>
+            <div class="value-card">
+                <div class="icon"><i class="fas fa-smile"></i></div>
+                <h3>Maturité émotionnelle</h3>
+                <p>Veiller à l'harmonie de nos relations en déployant savoir-faire et savoir-être.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section section-alt">
+    <div class="container">
+        <h2 class="section-title section-title-center">Notre expertise technologique</h2>
+        <p class="section-subtitle section-subtitle-center">Des compétences variées pour répondre à tous vos besoins IT.</p>
+
+        <div class="expertise-tabs">
+            <button class="expertise-tab active" data-tab="infra">Hybrid Infrastructure</button>
+            <button class="expertise-tab" data-tab="secu">Cyber Security</button>
+            <button class="expertise-tab" data-tab="work">Digital Workplace</button>
+            <button class="expertise-tab" data-tab="data">Data & AI</button>
+        </div>
+
+        <div class="expertise-content active" id="tab-infra">
+            <ul class="expertise-list">
+                <li>Network Infrastructure</li>
+                <li>Wireless Infrastructure</li>
+                <li>Datacenter Infrastructure</li>
+                <li>Business Continuity</li>
+                <li>Cloud & Hybrid Solutions</li>
+            </ul>
+        </div>
+        <div class="expertise-content" id="tab-secu">
+            <ul class="expertise-list">
+                <li>Network Security & Access Control</li>
+                <li>Email, Web & Collaboration Security</li>
+                <li>Identity, Access & Endpoint Security</li>
+                <li>Security Operations (SOC)</li>
+                <li>Pentest & Audit</li>
+            </ul>
+        </div>
+        <div class="expertise-content" id="tab-work">
+            <ul class="expertise-list">
+                <li>Cloud Collaboration Solutions</li>
+                <li>Office Solutions</li>
+                <li>Managed Print Solutions</li>
+                <li>Desktop As A Service</li>
+                <li>Workplace Managed Services</li>
+            </ul>
+        </div>
+        <div class="expertise-content" id="tab-data">
+            <ul class="expertise-list">
+                <li>Data Management</li>
+                <li>Business Intelligence</li>
+                <li>Cloud Data & AI</li>
+                <li>Machine Learning</li>
+                <li>Data Governance</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <h2 class="section-title section-title-center">Services</h2>
+        <p class="section-subtitle section-subtitle-center">Des solutions complètes pour accompagner votre transformation.</p>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="icon"><i class="fas fa-concierge-bell"></i></div>
+                <h3>Services professionnels</h3>
+                <p>Conseil, conception, intégration et optimisation de vos infrastructures IT.</p>
+                <a href="{{ url_for('contact') }}" class="card-link">En savoir plus <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="feature-card">
+                <div class="icon"><i class="fas fa-shield-alt"></i></div>
+                <h3>Services de sécurité</h3>
+                <p>Pentest, audit d'architecture, SOC, formation et sensibilisation.</p>
+                <a href="{{ url_for('contact') }}" class="card-link">En savoir plus <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="feature-card">
+                <div class="icon"><i class="fas fa-cloud"></i></div>
+                <h3>Cloud Advisory</h3>
+                <p>Assessment, advisory, migration et sécurité dans le cloud.</p>
+                <a href="{{ url_for('contact') }}" class="card-link">En savoir plus <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="feature-card">
+                <div class="icon"><i class="fas fa-headset"></i></div>
+                <h3>Services managés</h3>
+                <p>NOC, Managed Security, Managed Cloud, infogérance complète.</p>
+                <a href="{{ url_for('contact') }}" class="card-link">En savoir plus <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section section-alt">
+    <div class="container" style="text-align:center">
+        <h2 class="section-title section-title-center">Contactez-nous</h2>
+        <p class="section-subtitle section-subtitle-center">Vous avez un projet ? Discutons-en.</p>
+        <a href="{{ url_for('contact') }}" class="btn btn-primary" style="margin-top:10px">
+            <i class="fas fa-paper-plane"></i> Demander un devis
+        </a>
     </div>
 </section>
 

@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
+from datetime import datetime
 import os
 
 from config import Config
@@ -7,6 +8,10 @@ from models import db, ContactMessage
 app = Flask(__name__)
 app.config.from_object(Config)
 db.init_app(app)
+
+@app.context_processor
+def inject_now():
+    return {'now': datetime.utcnow}
 
 with app.app_context():
     try:
