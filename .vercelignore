@@ -1,0 +1,10 @@
+.env
+*.db
+instance/
+mail_log/
+__pycache__/
+*.pyc
+cookies.txt
+test_output.html
+flask_error.txt
+flask_output.txt

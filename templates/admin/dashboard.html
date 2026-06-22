@@ -1,0 +1,63 @@
+{% extends "admin/base_admin.html" %}
+{% block title %}Dashboard - Sannad Admin{% endblock %}
+{% block header %}Tableau de bord{% endblock %}
+{% block content %}
+
+<div class="stats-grid">
+    <div class="stat-card">
+        <div class="icon"><i class="fas fa-car"></i></div>
+        <div class="number">{{ total_cars }}</div>
+        <div class="label">Voitures en catalogue</div>
+    </div>
+    <div class="stat-card">
+        <div class="icon"><i class="fas fa-calendar-check"></i></div>
+        <div class="number">{{ total_reservations }}</div>
+        <div class="label">Réservations totales</div>
+    </div>
+    <div class="stat-card">
+        <div class="icon"><i class="fas fa-envelope"></i></div>
+        <div class="number">{{ total_messages }}</div>
+        <div class="label">Messages reçus</div>
+    </div>
+    {% if session.get('admin_role') != 'employe' %}
+    <div class="stat-card">
+        <div class="icon"><i class="fas fa-wallet"></i></div>
+        <div class="number">{{ reservations|sum(attribute='prix_total') }} DH</div>
+        <div class="label">Chiffre d'affaires</div>
+    </div>
+    {% endif %}
+</div>
+
+
+
+<div class="table-container">
+    <h3>Dernières réservations</h3>
+    <table class="admin-table">
+        <thead>
+            <tr>
+                <th>N°</th>
+                <th>Client</th>
+                <th>Voiture</th>
+                <th>Dates</th>
+                <th>Total</th>
+                <th>Statut</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for r in reservations %}
+            <tr>
+                <td><strong>{{ r.reservation_number }}</strong></td>
+                <td>{{ r.client_nom }} {{ r.client_prenom }}</td>
+                <td>{{ r.car.brand }} {{ r.car.name }}</td>
+                <td>{{ r.date_debut.strftime('%d/%m') }} - {{ r.date_fin.strftime('%d/%m') }}</td>
+                <td>{{ r.prix_total }} DH</td>
+                <td><span class="badge badge-{{ 'success' if r.statut == 'Confirmé' else 'warning' }}">{{ r.statut }}</span></td>
+            </tr>
+            {% else %}
+            <tr><td colspan="6" class="empty-table">Aucune réservation pour le moment</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

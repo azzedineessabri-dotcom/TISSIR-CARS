@@ -1,0 +1,58 @@
+{% extends "admin/base_admin.html" %}
+{% block title %}Emails - Sannad Admin{% endblock %}
+{% block header %}Historique des emails{% endblock %}
+{% block content %}
+
+<div class="admin-toolbar">
+    <span>{{ files|length }} email(s) sauvegardés</span>
+    {% if files %}
+    <form method="POST" action="{{ url_for('admin_emails_delete_all') }}" onsubmit="return confirm('Supprimer tous les emails ?')">
+        <button type="submit" class="btn btn-outline" style="padding:8px 15px;font-size:0.85rem;color:#991b1b;border-color:#991b1b">
+            <i class="fas fa-trash"></i> Tout supprimer
+        </button>
+    </form>
+    {% endif %}
+</div>
+
+<div class="table-container">
+    <table class="admin-table">
+        <thead>
+            <tr>
+                <th>Fichier</th>
+                <th>Type</th>
+                <th>Taille</th>
+                <th>Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for f in files %}
+            <tr>
+                <td><code>{{ f.name }}</code></td>
+                <td>
+                    {% if 'admin_' in f.name %}
+                    <span class="badge badge-warning">Admin</span>
+                    {% else %}
+                    <span class="badge badge-success">Client</span>
+                    {% endif %}
+                </td>
+                <td>{{ f.size }} o</td>
+                <td>{{ f.modified }}</td>
+                <td>
+                    <a href="{{ url_for('admin_email_view', filename=f.name) }}" target="_blank" class="btn-sm-primary">
+                        <i class="fas fa-eye"></i> Voir
+                    </a>
+                </td>
+            </tr>
+            {% else %}
+            <tr><td colspan="5" class="empty-table">
+                <i class="fas fa-envelope-open-text"></i><br>
+                Aucun email sauvegardé.<br>
+                <small style="color:var(--text-light)">Les emails sont sauvegardés automatiquement lors des réservations.</small>
+            </td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

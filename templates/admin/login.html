@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Connexion | Sannad Tech</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { display: flex; align-items: center; justify-content: center; min-height: 100vh; background: var(--primary); }
+        .login-box { background: var(--white); padding: 40px; border-radius: var(--radius); box-shadow: 0 20px 60px rgba(0,0,0,0.3); width: 100%; max-width: 400px; }
+        .login-box h1 { text-align: center; color: var(--primary); margin-bottom: 5px; }
+        .login-box p { text-align: center; color: var(--text-light); margin-bottom: 30px; }
+        .login-box .logo { justify-content: center; margin-bottom: 20px; }
+        .alert { margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <div class="login-box">
+        <a href="{{ url_for('index') }}" class="logo"><i class="fas fa-car"></i> Sannad <span>Admin</span></a>
+        <p>Espace de gestion</p>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">{{ message }}</div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        <form method="POST">
+            <div class="form-group">
+                <label>Nom d'utilisateur</label>
+                <input type="text" name="username" required placeholder="admin" style="width:100%">
+            </div>
+            <div class="form-group">
+                <label>Mot de passe</label>
+                <input type="password" name="password" required placeholder="••••••" style="width:100%">
+            </div>
+            <button type="submit" class="btn btn-primary btn-block" style="padding:14px;font-size:1.05rem">
+                <i class="fas fa-sign-in-alt"></i> Se connecter
+            </button>
+        </form>
+        <p style="margin-top:10px;text-align:center;font-size:0.85rem">
+            <a href="{{ url_for('admin_forgot_password') }}" style="color:var(--text-light)"><i class="fas fa-key"></i> Mot de passe oublié ?</a>
+        </p>
+        <p style="margin-top:10px;text-align:center;font-size:0.85rem">
+            <a href="{{ url_for('index') }}" style="color:var(--text-light)"><i class="fas fa-arrow-left"></i> Retour au site</a>
+        </p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Sannad Tech - Location de Voitures{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="{{ url_for('index') }}" class="logo">
+                <i class="fas fa-car"></i> Sannad <span>Tech</span>
+            </a>
+            <nav class="nav">
+                <ul>
+                    <li><a href="{{ url_for('index') }}">Accueil</a></li>
+                    <li><a href="{{ url_for('catalogue') }}">Catalogue</a></li>
+                    <li><a href="{{ url_for('contact') }}">Contact</a></li>
+                </ul>
+            </nav>
+            <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
+        </div>
+    </header>
+
+    <main>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        <div class="container">
+            {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </main>
+
+    <a href="https://wa.me/{{ config.get('WHATSAPP_NUMBER', '212600000000') }}?text=Bonjour%20Sannad%20Tech%20!" target="_blank" class="whatsapp-float" aria-label="WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>{{ config.get('COMPANY_NAME', 'Sannad Tech') }}</h4>
+                    <p>Location de voitures partout au Maroc. Qualité, fiabilité et prix compétitifs.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Liens Rapides</h4>
+                    <ul>
+                        <li><a href="{{ url_for('index') }}">Accueil</a></li>
+                        <li><a href="{{ url_for('catalogue') }}">Catalogue</a></li>
+                        <li><a href="{{ url_for('contact') }}">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    {% set addr = config.get('COMPANY_ADDRESS', '') %}
+                    {% set phone = config.get('COMPANY_PHONE', '') %}
+                    {% set email = config.get('COMPANY_EMAIL', '') %}
+                    {% if addr %}<p><i class="fas fa-map-marker-alt"></i> {{ addr }}</p>{% endif %}
+                    {% if phone %}<p><i class="fas fa-phone"></i> {{ phone }}</p>{% endif %}
+                    {% if email %}<p><i class="fas fa-envelope"></i> {{ email }}</p>{% endif %}
+                </div>
+                <div class="footer-col">
+                    <h4>Suivez-nous</h4>
+                    <div class="social">
+                        <a href="{{ config.get('COMPANY_FACEBOOK', '#') }}"><i class="fab fa-facebook"></i></a>
+                        <a href="{{ config.get('COMPANY_INSTAGRAM', '#') }}"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/{{ config.get('WHATSAPP_NUMBER', '212600000000') }}"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 {{ config.get('COMPANY_NAME', 'Sannad Tech') }}. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

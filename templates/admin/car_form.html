@@ -1,0 +1,100 @@
+{% extends "admin/base_admin.html" %}
+{% block title %}{{ 'Modifier' if car else 'Ajouter' }} une voiture - Sannad Admin{% endblock %}
+{% block header %}{{ 'Modifier' if car else 'Ajouter' }} une voiture{% endblock %}
+{% block content %}
+
+<div style="max-width:700px">
+    <form method="POST" class="booking-form" enctype="multipart/form-data">
+        <div class="form-row">
+            <div class="form-group">
+                <label>Marque *</label>
+                <input type="text" name="brand" required value="{{ car.brand if car else '' }}" placeholder="Ex: Renault">
+            </div>
+            <div class="form-group">
+                <label>Modèle *</label>
+                <input type="text" name="name" required value="{{ car.name if car else '' }}" placeholder="Ex: Clio">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label>Catégorie *</label>
+                <select name="category" required>
+                    <option value="">Choisir...</option>
+                    {% for cat in ['Économique', 'SUV', 'Luxe'] %}
+                    <option value="{{ cat }}" {{ 'selected' if car and car.category == cat }}>{{ cat }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Transmission *</label>
+                <select name="transmission" required>
+                    <option value="">Choisir...</option>
+                    {% for t in ['Manuelle', 'Automatique'] %}
+                    <option value="{{ t }}" {{ 'selected' if car and car.transmission == t }}>{{ t }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label>Carburant *</label>
+                <select name="fuel" required>
+                    <option value="">Choisir...</option>
+                    {% for f in ['Essence', 'Diesel', 'Hybride', 'Électrique'] %}
+                    <option value="{{ f }}" {{ 'selected' if car and car.fuel == f }}>{{ f }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Places</label>
+                <input type="number" name="seats" value="{{ car.seats if car else 5 }}" min="1" max="9">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label>Prix par jour (DH) *</label>
+                <input type="number" name="price_per_day" required step="10" value="{{ car.price_per_day if car else '' }}" placeholder="Ex: 350">
+            </div>
+            <div class="form-group">
+                <label>Nombre de véhicules</label>
+                <input type="number" name="quantity" value="{{ car.quantity if car else 1 }}" min="1" max="999">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label style="display:flex;align-items:center;gap:10px">
+                <input type="checkbox" name="available" {{ 'checked' if (car and car.available) or not car else '' }}>
+                Disponible à la réservation
+            </label>
+        </div>
+
+        <div class="form-group">
+            <label>Photo de la voiture</label>
+            {% if car and car.image and car.image != 'car-placeholder.jpg' %}
+            <div style="margin-bottom:10px">
+                <img src="{{ car.image if car.image.startswith('http') else url_for('static', filename='uploads/' + car.image) }}" style="max-width:200px;border-radius:8px;border:1px solid #ddd">
+                <p style="font-size:0.85rem;color:var(--text-light);margin-top:5px">Actuelle : {{ car.image }}</p>
+            </div>
+            {% endif %}
+            <input type="file" name="image" accept="image/*" style="padding:8px;border:2px solid #e0e0e0;border-radius:8px;width:100%">
+            <small style="color:var(--text-light)">Formats: JPG, PNG, GIF. Laissez vide pour garder l'image actuelle.</small>
+        </div>
+
+        <div class="form-group">
+            <label>Description</label>
+            <textarea name="description" placeholder="Description du véhicule...">{{ car.description if car else '' }}</textarea>
+        </div>
+
+        <div style="display:flex;gap:10px">
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-save"></i> {{ 'Enregistrer' if car else 'Ajouter' }}
+            </button>
+            <a href="{{ url_for('admin_cars') }}" class="btn btn-outline">Annuler</a>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends "admin/base_admin.html" %}
+{% block title %}Gestion des Utilisateurs - Sannad Admin{% endblock %}
+{% block header %}Gestion des utilisateurs{% endblock %}
+{% block content %}
+
+<div class="admin-toolbar">
+    <span>{{ users|length }} utilisateur(s)</span>
+    <a href="{{ url_for('admin_user_add') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Ajouter un utilisateur</a>
+</div>
+
+<div class="table-container">
+    <table class="admin-table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Nom d'utilisateur</th>
+                <th>Email</th>
+                <th>Rôle</th>
+                <th>Actif</th>
+                <th>Date de création</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for u in users %}
+            <tr>
+                <td>{{ u.id }}</td>
+                <td><strong>{{ u.username }}</strong></td>
+                <td>{{ u.email }}</td>
+                <td><span class="badge badge-info">{{ u.role }}</span></td>
+                <td>
+                    {% if u.active %}
+                    <span class="badge badge-success">Oui</span>
+                    {% else %}
+                    <span class="badge badge-danger">Non</span>
+                    {% endif %}
+                </td>
+                <td>{{ u.created_at.strftime('%d/%m/%Y') if u.created_at else 'N/A' }}</td>
+                <td>
+                    <div class="admin-actions">
+                        <a href="{{ url_for('admin_user_edit', user_id=u.id) }}" class="btn-sm-primary"><i class="fas fa-edit"></i></a>
+                        <form method="POST" action="{{ url_for('admin_user_delete', user_id=u.id) }}" style="display:inline" onsubmit="return confirm('Supprimer l\'utilisateur {{ u.username }} ?')">
+                            <button type="submit" class="btn-sm-danger"><i class="fas fa-trash"></i></button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+            {% else %}
+            <tr><td colspan="7" class="empty-table"><i class="fas fa-users"></i><br>Aucun utilisateur. <a href="{{ url_for('admin_user_add') }}">Ajoutez-en un</a></td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Réservation en cours | Sannad Tech{% endblock %}
+{% block content %}
+
+<div class="container">
+    <div class="confirmation">
+        <i class="fas fa-clock" style="color:var(--accent)"></i>
+        <h1>Réservation en cours</h1>
+        <p class="numero">N° {{ reservation.reservation_number }}</p>
+
+        <div class="confirmation-details">
+            <h3><i class="fas fa-user"></i> Client</h3>
+            <p><strong>Nom :</strong> {{ reservation.client_nom }} {{ reservation.client_prenom }}</p>
+            <p><strong>Email :</strong> {{ reservation.client_email }}</p>
+            <p><strong>Téléphone :</strong> {{ reservation.client_telephone }}</p>
+
+            <h3 style="margin-top:20px"><i class="fas fa-car"></i> Véhicule</h3>
+            <p><strong>Voiture :</strong> {{ car.brand }} {{ car.name }}</p>
+            <p><strong>Transmission :</strong> {{ car.transmission }}, {{ car.fuel }}</p>
+
+            <h3 style="margin-top:20px"><i class="fas fa-calendar"></i> Détails de la Location</h3>
+            <p><strong>Date de prise :</strong> {{ reservation.date_debut.strftime('%d/%m/%Y à %H:%M') }}</p>
+            <p><strong>Date de retour :</strong> {{ reservation.date_fin.strftime('%d/%m/%Y à %H:%M') }}</p>
+            <p><strong>Durée :</strong> {{ reservation.duree }} jour{% if reservation.duree > 1 %}s{% endif %}</p>
+            <p><strong>Montant Total :</strong> {{ reservation.prix_total }} DH</p>
+
+            <h3 style="margin-top:20px"><i class="fas fa-info-circle"></i> Statut</h3>
+            <p><span class="badge badge-warning" style="font-size:1rem;padding:6px 15px">{{ reservation.statut }}</span></p>
+        </div>
+
+        <div class="alert" style="background:#dbeafe;color:#1e40af;border:1px solid #bfdbfe;text-align:center;margin-top:25px;max-width:600px;margin-left:auto;margin-right:auto">
+            <i class="fas fa-info-circle"></i>
+            Votre demande de réservation a été reçue. Vous recevrez une confirmation par email ou WhatsApp dès que l'administrateur aura validé votre réservation.
+        </div>
+
+        <div style="margin-top:25px">
+            <a href="{{ url_for('index') }}" class="btn btn-primary">Retour à l'accueil</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

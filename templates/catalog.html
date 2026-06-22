@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% block title %}Catalogue - Nos Voitures | Sannad Tech{% endblock %}
+{% block content %}
+
+<section class="section">
+    <div class="container">
+        <h2 class="section-title">Notre Flotte</h2>
+        <p class="section-subtitle">Trouvez la voiture parfaite pour votre voyage</p>
+
+        <form class="filters" method="GET" action="{{ url_for('catalogue') }}">
+            <div class="form-group" style="margin-bottom:0">
+                <label>Catégorie</label>
+                <select name="category" onchange="this.form.submit()">
+                    <option value="">Toutes</option>
+                    {% for c in ['Économique', 'SUV', 'Luxe'] %}
+                    <option value="{{ c }}" {{ 'selected' if selected_category == c }}>{{ c }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group" style="margin-bottom:0">
+                <label>Transmission</label>
+                <select name="transmission" onchange="this.form.submit()">
+                    <option value="">Toutes</option>
+                    {% for t in ['Manuelle', 'Automatique'] %}
+                    <option value="{{ t }}" {{ 'selected' if selected_transmission == t }}>{{ t }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group" style="margin-bottom:0">
+                <label>Carburant</label>
+                <select name="fuel" onchange="this.form.submit()">
+                    <option value="">Tous</option>
+                    {% for f in ['Essence', 'Diesel', 'Hybride', 'Électrique'] %}
+                    <option value="{{ f }}" {{ 'selected' if selected_fuel == f }}>{{ f }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <a href="{{ url_for('catalogue') }}" class="btn btn-outline" style="padding:10px 20px;font-size:0.9rem">Réinitialiser</a>
+        </form>
+
+        {% if grouped %}
+        {% for cat, cars in grouped.items() %}
+        <div style="margin-top:40px">
+            <h3 style="color:var(--primary);border-bottom:3px solid var(--accent);padding-bottom:8px;display:inline-block">{{ cat }}</h3>
+            <div class="car-grid" style="margin-top:15px">
+                {% for car in cars %}
+                <div class="car-card">
+                    <div class="car-card-img">
+                        {% if car.image and car.image != 'car-placeholder.jpg' %}
+                        <img src="{{ car.image if car.image.startswith('http') else url_for('static', filename='uploads/' + car.image) }}" alt="{{ car.brand }} {{ car.name }}">
+                        {% else %}
+                        <i class="fas fa-car-side"></i>
+                        {% endif %}
+                        <span class="car-card-category">{{ car.category }}</span>
+                        {% if not car.available %}
+                        <span style="position:absolute;top:10px;right:10px;background:#ef4444;color:white;padding:4px 10px;border-radius:20px;font-size:0.75rem;font-weight:600">Indisponible</span>
+                        {% endif %}
+                    </div>
+                    <div class="car-card-body">
+                        <h3>{{ car.brand }} {{ car.name }}</h3>
+                        <p class="brand">{{ car.category }} - {{ car.transmission }}</p>
+                        <div class="car-card-specs">
+                            <span><i class="fas fa-users"></i> {{ car.seats }} places</span>
+                            <span><i class="fas fa-gas-pump"></i> {{ car.fuel }}</span>
+                            <span><i class="fas fa-cog"></i> {{ car.transmission }}</span>
+                            <span><i class="fas fa-layer-group"></i> {{ rester_disponible(car.id) }}/{{ car.quantity }} disp.</span>
+                        </div>
+                        <div class="car-card-price">
+                            <span class="price">{{ car.price_per_day }} <small>DH/jour</small></span>
+                            {% if car.available %}
+                            <a href="{{ url_for('car_detail', car_id=car.id) }}" class="btn btn-primary">Réserver</a>
+                            {% else %}
+                            <span class="btn btn-primary" style="opacity:0.5;cursor:not-allowed;background:#999">Indisponible</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <div class="empty-state">
+            <i class="fas fa-car-side"></i>
+            <h3>Aucune voiture trouvée</h3>
+            <p>Essayez de modifier vos filtres pour voir plus de résultats.</p>
+            <a href="{{ url_for('catalogue') }}" class="btn btn-primary" style="margin-top:15px">Voir toutes les voitures</a>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+{% endblock %}

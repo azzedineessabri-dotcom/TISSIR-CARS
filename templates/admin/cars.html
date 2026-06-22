@@ -1,0 +1,71 @@
+{% extends "admin/base_admin.html" %}
+{% block title %}Gestion des Voitures - Sannad Admin{% endblock %}
+{% block header %}Gestion des voitures{% endblock %}
+{% block content %}
+
+<div class="admin-toolbar">
+    <span>{{ cars|length }} voiture(s) au catalogue</span>
+    <a href="{{ url_for('admin_car_add') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Ajouter une voiture</a>
+</div>
+
+<div class="table-container">
+    <table class="admin-table">
+        <thead>
+            <tr>
+                <th>Photo</th>
+                <th>#</th>
+                <th>Marque</th>
+                <th>Modèle</th>
+                <th>Catégorie</th>
+                <th>Transmission</th>
+                <th>Carburant</th>
+                <th>Places</th>
+                <th>Qté</th>
+                <th>Prix/jour</th>
+                <th>Dispo</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for car in cars %}
+            <tr>
+                <td>
+                    {% if car.image and car.image != 'car-placeholder.jpg' %}
+                    <img src="{{ car.image if car.image.startswith('http') else url_for('static', filename='uploads/' + car.image) }}" style="width:60px;height:40px;object-fit:cover;border-radius:4px">
+                    {% else %}
+                    <i class="fas fa-car" style="color:#ccc;font-size:1.5rem"></i>
+                    {% endif %}
+                </td>
+                <td>{{ car.id }}</td>
+                <td><strong>{{ car.brand }}</strong></td>
+                <td>{{ car.name }}</td>
+                <td><span class="badge badge-info">{{ car.category }}</span></td>
+                <td>{{ car.transmission }}</td>
+                <td>{{ car.fuel }}</td>
+                <td>{{ car.seats }}</td>
+                <td>{{ car.quantity }}</td>
+                <td><strong>{{ car.price_per_day }} DH</strong></td>
+                <td>
+                    {% if car.available %}
+                    <span class="badge badge-success">Oui</span>
+                    {% else %}
+                    <span class="badge badge-danger">Non</span>
+                    {% endif %}
+                </td>
+                <td>
+                    <div class="admin-actions">
+                        <a href="{{ url_for('admin_car_edit', car_id=car.id) }}" class="btn-sm-primary"><i class="fas fa-edit"></i></a>
+                        <form method="POST" action="{{ url_for('admin_car_delete', car_id=car.id) }}" style="display:inline" onsubmit="return confirm('Supprimer {{ car.brand }} {{ car.name }} ?')">
+                            <button type="submit" class="btn-sm-danger"><i class="fas fa-trash"></i></button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+            {% else %}
+            <tr><td colspan="12" class="empty-table"><i class="fas fa-car"></i><br>Aucune voiture. <a href="{{ url_for('admin_car_add') }}">Ajoutez-en une</a></td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
