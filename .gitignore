@@ -1,8 +1,5 @@
-__pycache__/
-*.pyc
-.env
-instance/
-*.db
-.vercel
-
+node_modules
+dist
+.vite
+*.local
 .vercel
